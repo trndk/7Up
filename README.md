@@ -8,13 +8,13 @@ It has the ability to view images, text with syntax highlighting, short videos, 
 To install and run the server:
 
     apt-get install nodejs
-    git clone https://github.com/trndk/Upper
+    git clone https://github.com/trndk/7Up
     cd Upper
     cd server
     npm install
     node server.js
 
-Client configuration is done through the [`server.conf`](https://github.com/trndk/Upper/server/server.conf) file:
+Client configuration is done through the [`server.conf`](https://github.com/trndk/7Up/server/server.conf) file:
 
 - `listen` is an `address:port`-formatted string, where either one are optional. Some examples include `":9000"` to listen on any interface, port 9000; `"127.0.0.1"` to listen on localhost port 80; `"1.1.1.1:8080"` to listen on 1.1.1.1 port 8080; or even `""` to listen on any interface, port 80.
 
@@ -27,8 +27,6 @@ Client configuration is done through the [`server.conf`](https://github.com/trnd
 - There are three additional sections in the configuration file: `http`, `https` and `cloudflare-cache-invalidate`. The first two are fairly self-explanitory (and at least one must be enabled).
 
 - `cloudflare-cache-invalidate` is disabled by default and only useful if you choose to run the Up1 server behind Cloudflare. When this section is enabled, it ensures that when an upload is deleted, Cloudflare doesn't hold on to copies of the upload on its edge servers by sending an API call to invalidate it.
-
-- For the web application configuration, a [`config.js.example`](https://github.com/Upload/Up1/config.js.example) file is provided. Make sure the `api_key` here matches the one in `server.conf`.
 
 ## **HOW IT WORKS?**
 
