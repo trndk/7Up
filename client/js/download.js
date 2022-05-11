@@ -88,10 +88,12 @@ upload.modules.addmodule({
         this._.title.text('Up1')
         delete this['_']
     },
-    /* These mimes are trusted, anything not on this list will not embed
-       nor provide view in browser links.  Some embed exceptions apply
-       like svg will embed but will not directly link and pdf vice versa.
-       ALl text mime types support view in browser and translate to text/plain */
+    /* 
+    These mimes are trusted, anything not on this list will not embed
+    nor provide view in browser links.  Some embed exceptions apply
+    like svg will embed but will not directly link and pdf vice versa.
+    ALl text mime types support view in browser and translate to text/plain 
+    */
     assocations: {
       'application/javascript': 'text',
       'application/x-javascript': 'text',
@@ -127,9 +129,11 @@ upload.modules.addmodule({
       'image/webp': 'image',
       'text/': 'text'
     },
-    // Mime types to use for "View in browser" for safety reasons such as html we use text/plain
-    // Other display types such as PDF and images you want native viewing so we leave those
-    // SVG can be unsafe for viewing in a browser directly
+    /* 
+    Mime types to use for "View in browser" for safety reasons such as html we use text/plain
+    Other display types such as PDF and images you want native viewing so we leave those
+    SVG can be unsafe for viewing in a browser directly
+    */
     safeassocations: {
         'text': 'text/plain',
         'svg': 'text/plain'

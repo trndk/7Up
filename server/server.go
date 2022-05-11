@@ -73,7 +73,7 @@ func readConfig(name string) Config {
 
 func validateConfig(config Config) {
 	if !config.Http.Enabled && !config.Https.Enabled {
-		log.Fatal("At least one of http or https must be enabled!")
+		log.Fatal("Either HTTP or HTTPS must be enabled!")
 	}
 	if len(config.ApiKey) == 0 {
 		log.Fatal("A static key must be defined in the configuration!")
@@ -106,7 +106,7 @@ func index(w http.ResponseWriter, r *http.Request) {
 
 func upload(w http.ResponseWriter, r *http.Request) {
 	if r.ContentLength > config.MaxFileSize {
-		msg, _ := json.Marshal(&ErrorMessage{Error: "File size too large", Code: 1})
+		msg, _ := json.Marshal(&ErrorMessage{Error: "The file is too large", Code: 1})
 		w.Write(msg)
 		return
 	}
@@ -124,14 +124,14 @@ func upload(w http.ResponseWriter, r *http.Request) {
 
 	apikey := r.FormValue("api_key")
 	if apikey != config.ApiKey {
-		msg, _ := json.Marshal(&ErrorMessage{Error: "API key doesn't match", Code: 2})
+		msg, _ := json.Marshal(&ErrorMessage{Error: "API key doesn't match.", Code: 2})
 		w.Write(msg)
 		return
 	}
 
 	ident := r.FormValue("ident")
 	if len(ident) != 22 {
-		msg, _ := json.Marshal(&ErrorMessage{Error: "Ident filename length is incorrect", Code: 3})
+		msg, _ := json.Marshal(&ErrorMessage{Error: "Ident filename length is incorrect.", Code: 3})
 		w.Write(msg)
 		return
 	}
@@ -175,7 +175,7 @@ func delfile(w http.ResponseWriter, r *http.Request) {
 	delkey := r.FormValue("delkey")
 
 	if len(ident) != 22 {
-		msg, _ := json.Marshal(&ErrorMessage{Error: "Ident filename length is incorrect", Code: 3})
+		msg, _ := json.Marshal(&ErrorMessage{Error: "Ident filename length is incorrect.", Code: 3})
 		w.Write(msg)
 		return
 	}
@@ -188,7 +188,7 @@ func delfile(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if delkey != makeDelkey(ident) {
-		msg, _ := json.Marshal(&ErrorMessage{Error: "Incorrect delete key", Code: 10})
+		msg, _ := json.Marshal(&ErrorMessage{Error: "Incorrect delete key.", Code: 10})
 		w.Write(msg)
 		return
 	}

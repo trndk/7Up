@@ -1,3 +1,7 @@
+/*
+Do not update "tmp" packages. If you update it, the client will get errors!
+*/
+
 var crypto = require('crypto');
 var fs = require('fs');
 var path = require('path');
@@ -11,8 +15,8 @@ var tmp = require('tmp');
 
 
 /* 
-    Different headers can be pushed depending on data format 
-    to allow for changes with backwards compatibility
+Different headers can be pushed depending on data format 
+to allow for changes with backwards compatibility
 */
 var Upper_HEADERS = {
     v1: new Buffer.from("Upper\0", 'binary')
@@ -45,7 +49,7 @@ function handle_upload(req, res) {
             fstream.write(Upper_HEADERS.v1, 'binary', () => file.pipe(fstream));
         } catch (err) {
             console.error("Error on file:", err);
-            res.send("Internal Server Error");
+            res.send("Internal server error");
             req.unpipe(busboy);
             res.close();
         }
